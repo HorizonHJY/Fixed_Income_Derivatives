@@ -6,9 +6,6 @@ from scipy.interpolate import interp1d
 from scipy.stats import norm
 from scipy.optimize import brentq
 
-from scipy.optimize import newton
-from matplotlib import pyplot as plt
-
 # Black formula for caplets/floorlets
 def black_formula(K, F, v, is_call=True):
     d1 = (np.log(F / K) + 0.5 * v**2) / v
@@ -65,7 +62,6 @@ def HW_Caplets(file_path, a, sigma):
         ti_1 = row['T_iM1']  # Option expiry (T_{i-1})
         ti = row['T_i']  # Rate period end (T_i)
         P_T = row['Discount']  # Discount factor to T_{i-1}
-
         # 2. Get P_S = P(0,T_i) by matching T_i in data
         # Note: Assumes data is sorted and contains exact T_i matches
         P_S = cap_data[cap_data['T_i'] == ti]['Discount'].values[0]
